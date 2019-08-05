@@ -1,2 +1,2 @@
 # context-n
-UTAU plugin: change ん lyric based on following note lyric
+The pronunciation of the syllabic nasal in Japanese depends strongly on the context of the following consonant. This plugin automates the process of selecting the appropriate variation of the nasal in UTAU. Users can change global settings in config.ini to specify how they want these variants to be written and which kana they correspond to.
