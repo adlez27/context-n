@@ -1,12 +1,16 @@
 import sys
+import os.path
 import configparser
-
-config = configparser.ConfigParser()
-config.read('config.ini')
 
 ust = configparser.RawConfigParser(allow_no_value=True)
 ust.optionxform = lambda option: option
 ust.read(sys.argv[1])
+
+config = configparser.ConfigParser()
+if (os.path.exists(ust['#SETTING']['VoiceDir'] + "\\context-n.ini")):
+    config.read(ust['#SETTING']['VoiceDir'] + "\\context-n.ini")
+else:
+    config.read('config.ini')
 
 if ('#NEXT' in ust):
     first_note_dex = int(ust.sections()[3][-4:])
