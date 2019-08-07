@@ -1,18 +1,33 @@
 # context-n
-The pronunciation of the syllabic nasal in Japanese depends strongly on the context of the following consonant. This plugin automates the process of selecting the appropriate variation of the nasal in UTAU.
+The pronunciation of the syllabic nasal in Japanese depends strongly on the context of the following consonant. This plugin automates the process of selecting the appropriate variation of the nasal in UTAU. It is compatible with both hiragana `ん` and romaji `n`. Lyrics in the UST may be in CV or VCV, and have any number of prefixes and suffixes.
 
-Default config matches KYE's voicebank. and is confirmed to work with hiragana CV and VCV. Users may edit global settings in config.ini in the plugin folder, or set individual voicebank settings by creating context-n.ini in their voicebank folder. You are free to distribute your voicebank including the context-n.ini file, and free to redistribute the entire plugin in accordance with the license.
+When using the plugin with a voicebank for the first time, it creates a `context-n.ini` file in the voicebank folder. Settings are copied from `default.ini`, which uses hiragana and matches the encoding of KYE's voicebank. To enable romaji compatibility, users can manually copy settings from `default-romaji.ini` instead.
 
-Users may be able to use the plugin with romaji Japanese voicebanks or with standard CVVC voicebanks via custom config. Please submit an issue if there are any problems with doing so.
+You are free to distribute your voicebank including the context-n.ini file, and free to redistribute the entire plugin in accordance with the license.
 
-Format of config.ini/context-n.ini
+Please submit all bug reports, feature requests, etc. via Github Issues.
+
+Format of `context-n.ini`
 ```
+[settings]
+romaji=true/false
+[exceptions]
+na
+ni
+nu
+ne
+no
 [mapping]
 lyric=nasal
-ka=ng
-ta=n
-pa=m
+k=ng
+t=n
+p=m
 か=んng
 た=んn
 ぱ=んm
 ```
+Settings has the romaji flag.
+
+Exceptions has lyrics which contain `n` but do not correspond to `ん`. These are only used when romaji is set to `true`.
+
+Mapping has the correspondence between lyrics and the nasal consonant that should precede it. The plugin checks whether the following note contains the lyric rather than whether the following note exactly matches the lyric, meaning that `k` will match with `ka`, `ki`, etc. Mappings earlier in the list take precedence over ones later in the list, so if `ch` is placed before `h`, the plugin will use the `ch` mapping for the lyric `cha` instead of the `h` mapping.
