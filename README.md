@@ -8,7 +8,7 @@ You are free to distribute your voicebank including the context-n.ini file, and 
 Please submit all bug reports, feature requests, etc. via Github Issues.
 
 Format of `context-n.ini`
-```
+```ini
 [settings]
 romaji=true/false
 [exceptions]
